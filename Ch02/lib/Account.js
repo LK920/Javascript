@@ -1,17 +1,18 @@
+//객체 생성을 위한 사용자 정의 함수
 function Account(bank, id, name, money) {
     //멤버 변수
-    var bank = bank;
-    var id = id;
-    var name = name;
-    var money = money;
+    this.bank = bank;
+    this.id = id;
+    this.name = name;
+    this.money = money;
     //멤버 함수
-    var deposit   = function(money){
+    this.deposit   = function(money){
          this.money += money;
     };
-    var withdraw  = function(money){
+    this.withdraw  = function(money){
         this.money -= money;
     };
-    var show      = function(){
+    this.show      = function(){
         document.write('----------------------------------<br />');
         document.write('은행명: '+this.bank+'<br />');
         document.write('계좌번호: '+this.id+'<br />');
