@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-5</title>
+    <script src="./lib/calc.js"></script>
+</head>
+<body>
+    <h3>5.함수</h3>
+    <script>
+        //함수정의
+        function f(x){
+            var y = 2*x+3;
+            return y;
+        }
+        //함수 호출
+        var r1 = f(2);
+        var r2 = f(3);
+        var r3 = f(4);
+
+        document.write('r1 : '+r1+'<br />');
+        document.write('r2 : '+r2+'<br />');
+        document.write('r3 : '+r3+'<br />');
+
+        //익명 함수
+        var a = function(x, y){
+            var z = x * y;
+            return z;
+        }
+        var rs1 = a(1,3);
+        var rs2 = a(2,4);
+
+        document.write('rs1 : '+rs1+'<br />');
+        document.write('rs2 : '+rs2+'<br />');
+
+        //라이브러리 함수
+        var res1 = plus(1,2);
+        var res2 = minus(1,2);
+        var res3 = multi(1,2);
+        var res4 = div(1,2);
+
+        document.write("res1 : "+res1+"<br />");
+        document.write("res2 : "+res2+"<br />");
+        document.write("res3 : "+res3+"<br />");
+        document.write("res4 : "+res4+"<br />");
+
+        //내장 함수
+        alert('자바스크립트 기본 대화상자');
+        var result = confirm('확인 취소 버튼이 있는 대화상자');
+
+        if(result){
+            document.write('확인 버튼을 누르셨습니다.');
+        }else{
+            document.writet('취소 버튼을 누르셨습니다.');
+        }
+        //타이머 함수
+        setTimeout(function(){
+            alert("3초 후에 실행되는 셋타임 아웃")
+        } ,1000*3 );
+
+        setInterval(function() {
+            alert("3초마다 실행되는setInterval")
+            
+        }, 1000*3);
+
+    </script>
+</body>
+</html>

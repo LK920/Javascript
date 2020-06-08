@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-6</title>
+    <script src="./lib/Account.js"></script>
+</head>
+<body>
+    <h3>6. 객체</h3>
+    <script>
+        //개체 생성
+        var kb = new Account('국민은행','101-45465-4551','김유신', 10000);
+        var wr = new Account('우리은행','1015-465-4551','김춘추', 10000);
+
+        kb.deposit(50000);
+        kb.withdraw(2000);
+        kb.show();
+
+        wr.deposit(40000);
+        wr.withdraw(2000);
+        wr.show();
+
+        //JSON(JavaScript Object notaion) -자바 객체 표기법(key:value)
+        var ibk = {
+            //멤버변수
+            bank : '기업은행',
+            id: '1001-11-1110',
+            name : '홍길동',
+            money : 10000,
+
+            //멤버 함수
+            deposit : function(money){
+                this.money += money;
+            },
+            withdraw : function(money){
+                this.money -= money;
+            },
+            show : function(){
+                document.write('----------------------------------<br />'),
+                document.write('은행명: '+this.bank+'<br />'),
+                document.write('계좌번호: '+this.id+'<br />'),
+                document.write('이름: '+this.name+'<br />'),
+                document.write('예금주: '+this.money+'<br />'),
+                document.write('----------------------------------<br />')
+            }
+
+        };
+        ibk.deposit(50000);
+        ibk.withdraw(7000);
+        ibk.show();
+
+        //JSON 객체 : 이기종간의 데이터 교환을 위한 데이터 형식(포멧)
+        var user = {'uid':'A101','name':'김춘추','hp':'010-2773-2342','pos':'과장'};
+
+        document.write('아이디 :'+user.uid+'<br />' );
+        document.write('이름 :'+user.name+'<br />' );
+        document.write('전화번호 :'+user.hp+'<br />' );
+        document.write('직책 :'+user.pos+'<br />' );
+
+        //내장 객체 - Date
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var day = date.getDate();
+
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+
+        var result1 = "오늘날짜 : "+year+"년"+month+"월"+dat+"일"; 
+        var result2 = "현재시간 : "+hour+"시"+min+"분"+sec+"초"; 
+
+        //내장 객체 - Math
+        var r1 = Math.sbs(-5);
+        var r2 = Math.ceil(1.1);
+        var r3 = Math.floor(1.9);
+        var r4 = Math.round(1.4);
+        var r5 = Math.round(1.5);
+        
+        document.write('r1 :'+r1+'<br />');
+        document.write('r2 :'+r2+'<br />');
+        document.write('r3 :'+r3+'<br />');
+        document.write('r4 :'+r4+'<br />');
+        document.write('r5 :'+r5+'<br />');
+
+        var num1 = Math.random();
+        var num2 = num1*10;
+        var num3 = Math.ceil(num2);
+
+        document.write('1부터 10까지의 임의의 수'+num3+'<br />');
+
+        //내장 객체 - String
+        var str1 = new String('Hello Korea');
+        var str2 = 'Hello Korea';
+
+        var s1 = str1.charAt(0);
+        var s2 = str1.length;
+        var s4 = str1.indexOf('b');
+        var s3 = str2.lastIndexOf('e');
+        var s5 = str2.replace('Korea', 'Busan');
+        var s6 = str2.substring(1,5);
+
+        document.write('s1 :'+s1+'<br />');
+        document.write('s2 :'+s2+'<br />');
+        document.write('s3 :'+s3+'<br />');
+        document.write('s4 :'+s4+'<br />');
+        document.write('s5 :'+s5+'<br />');
+        document.write('s6 :'+s6+'<br />');
+
+    </script>
+    
+</body>
+</html>
