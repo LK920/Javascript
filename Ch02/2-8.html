@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-8</title>
+    
+</head>
+<body>
+    <h3>8. 문서객체</h3>
+
+        <div id="box1">box1</div>
+        <div id="box2">box2</div>
+        <div id="box3">box3</div>
+
+        <ul>
+            <li>서울</li>
+            <li>대전</li>
+            <li>대구</li>
+            <li>부산</li>
+            <li>광주</li>
+        </ul>
+        
+
+
+</body>
+</html>
+
+
+<script>
+    //문서객체 스타일 설정
+    var box1 = document.getElementById("box1");
+    box1.style.width = '100px';
+    box1.style.height = '100px';
+    box1.style.background= 'orange';
+
+    //문서객체 생성
+    var newElement  = document.createElement('h3');
+    var txtNode     = document.createTextNode('h3문서 객체 생성');
+    newElement.appendChild(txtNode);
+    document.body.appendChild(newElement);
+    //문서객체 제거
+    var ul = document.getElementsByTagName('ul');
+    document.body.removeChild(ul[0]);
+
+</script>
