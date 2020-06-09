@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        $(function(){
+
+            $('ol>li').css('color','orange');
+            $('li>em').css('color','skyblue');
+            $('li li').css('border','1px solid black');
+        })
+    </script>
+</head>
+<body>
+    <h3>3. 제이쿼리 자식, 후손 선택자</h3>
+
+    <h4>도시</h4>
+    <ul>
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>
+            <em>부산</em>
+            <ol>
+                <li>서면</li>
+                <li>자갈치</li>
+                <li>해운대</li>
+            </ol>
+        </li>
+        <li>광주</li>
+    </ul>
+    
+</body>
+</html>
