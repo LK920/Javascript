@@ -34,10 +34,10 @@
     box1.style.background= 'orange';
 
     //문서객체 생성
-    var newElement  = document.createElement('h3');
-    var txtNode     = document.createTextNode('h3문서 객체 생성');
-    newElement.appendChild(txtNode);
-    document.body.appendChild(newElement);
+    var newElement  = document.createElement('h3'); //<h3> 태그 생성
+    var txtNode     = document.createTextNode('h3문서 객체 생성'); //txt노드 생성
+    newElement.appendChild(txtNode); //<h3></h3>태그 사이에 txt노드 연결 = <h3>h3문서 객체 생성</h3>
+    document.body.appendChild(newElement); // <body>태그 사이에 newElement 삽입
     //문서객체 제거
     var ul = document.getElementsByTagName('ul');
     document.body.removeChild(ul[0]);
