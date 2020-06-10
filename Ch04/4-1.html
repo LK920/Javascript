@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            //기본 선택함수
+
+            var tags = $('ul > li');
+
+            console.log('객체 갯수 : ' + tags.length);
+
+            //eq() - 확장집합에서 특정 인덱스 번호의 객체를 선택
+            tags.eq(1).css('color','red');
+            //First, second
+            tags.first().css('color','blue');
+            //tags.second().css('color','green');
+
+            //slice() - 확장집합에서 특정구간 객체 선택
+            tags.slice(1,3).css('background','yellow');
+            //each() - 확장집합 개별 객체 갯수 만큼 반복처리 함수
+            tags.each(function(){
+                //$(this) : 현재 실행중인 대상 객체
+
+                $(this).css('border', '1px solid black');
+
+            });
+            //children()
+            tags.eq(3).children().css('border', '1px dotted black');
+            var target = tags.eq(3).children().eq(1).children().eq(1);
+            target.css('color', 'orange');
+
+            //next(), prev() - 합장집합의 특정객체의 다음, 이전 객체 선택
+            tags.first().next().next().css('color','green');
+            tags.last().prev().css('background','aqua');
+
+            //parent()-부모객체 선택
+            $('.sm').parent().parent().parent().prev().css('color','gold')
+
+            // find()
+            tags.find('.sm').css('color','yellow');
+
+        });
+
+    </script>
+</head>
+<body>
+    <h3>1. 제이쿼리 기본 선택함수</h3>
+    <ul>
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>
+            <em>부산</em> 
+            <ol>
+                <li>남포동</li>
+                <li class="sm">서면</li>
+                <li>해운대</li>
+                <li>동래</li>
+            </ol>
+        </li>
+        <li>광주</li>
+    </ul>
+
+
+
+</body>
+</html>

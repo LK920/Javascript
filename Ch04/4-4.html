@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-4</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            var tags = $('ul');
+
+            //태그내용 가져오기
+            var content1 = tags.html();
+            var content2 = tags.text();
+
+            console.log(content1);
+            console.log(content2);
+
+        
+            //태그내용 입력하기
+            $('p:eq(0)').html('<i>html()함수로 내용입력</i>');
+            $('p').eq(1).text('<i>text()함수로 내용입력</i>');
+
+            var div = $('.result>div');
+            div.eq(0).html(tags.html());
+            div.eq(1).html(tags.text());
+            div.eq(2).text(tags.html());
+            div.eq(3).text(tags.text());
+
+        });
+
+    </script>
+</head>
+<body>
+    <h3>4. 제이쿼리 태그내용 함수</h3>
+
+    <ul>
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+        <li>광주</li>
+    </ul>
+
+    <p></p>
+    <p></p>
+
+    <div class="result">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+</body>
+</html>

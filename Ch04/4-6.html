@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-6</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+
+            var btn = $('button');
+            var ul = $('ul');
+            var count = 1;
+            //추가버튼
+            btn.eq(0).click(function(){
+                ul.append('<li>아이템 '+count+'</li>');
+                count++;
+            });
+            //빼기버튼
+            btn.eq(1).click(function(){
+                ul.children().last().remove();
+                if (count >=1 ){
+                    count--;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h3>6. 제이쿼리 실습</h3>
+    <button>추가</button>
+    <button>빼기</button>
+
+    <ul></ul>
+
+</body>
+</html>

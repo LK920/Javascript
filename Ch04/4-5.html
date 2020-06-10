@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4-5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            
+            var tags = $('ul');
+
+            //객체 추가
+            tags.append('<li><i>제주도</i></li>');
+            tags.prepend('<li><i>서울특별시</i></li>');
+            tags.after('<b>after1</b>');
+            tags.after('<b>after2</b>');
+            tags.before('<b>before1</b>');
+            tags.before('<b>before2</b>');
+            tags.wrap('<div>');
+
+            //객체이동
+            tags.find('ol>li').eq(0).next().appendTo('ul>li:eq(1)');
+            tags.find('ol>li:eq(1)').prependTo('ul>li:eq(5)');
+
+            //객체 제거
+            $('ol>li:eq(0)').remove();
+            $('ol>li:eq(2)').empty();
+
+
+        });
+    </script>
+</head>
+<body>
+    <h3>5.제이쿼리 태그 추가, 이동 함수 </h3>
+    <section>
+        <ul>
+            <li><i>경기도</i></li>
+            <li><i>충청도</i></li>
+            <li><i>강원도</i></li>
+            <li>
+                <i>경상도</i>
+                <ol>
+                    <li>창원</li>
+                    <li>수원</li>
+                    <li>목포</li>
+                    <li>김해</li>
+                    <li>부여</li>
+                    <li>충주</li>
+                </ol>
+            </li>
+            <li><i>전라도</i></li>
+        </ul>
+    </section>
+
+
+
+    
+</body>
+</html>
