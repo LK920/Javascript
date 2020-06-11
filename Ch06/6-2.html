@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .box{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            background: orange;
+        }
+        
+        .box1{left: 20px;top: 100px; }
+        .box2{left: 230px;top: 100px; }
+        .box3{left: 440px;top: 100px; }
+    </style>
+    <script>
+        $(function(){
+            var button = $('button');
+            var box1 = $('.box1');
+            var box2 = $('.box2');
+            var box3 = $('.box3');
+
+            button.eq(0).click(function(){
+                box1.animate({
+                    'width'  :'200px',
+                    'height' :'200px',
+                    'opacity':'1'
+                },1000);
+            });
+            button.eq(1).click(function(){
+                box1.animate({
+                    'width'  :'0px',
+                    'height' :'0px',
+                    'opacity':'0'
+                },2000);
+            });
+            button.eq(2).click(function(){
+                box2.animate({
+                    'opacity':'0'
+                },1000);
+
+            });
+            button.eq(3).click(function(){
+                box2.animate({
+                    'opacity':'1'
+                },1000);
+            });
+            button.eq(4).click(function(){
+                box3.animate({
+                    'height':'0',
+                    'opacity':'0'
+                },500);
+
+            });
+            button.eq(5).click(function(){
+                box3.animate({
+                    'height':'200px',
+                    'opacity':'1'
+                },500);
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h3>2. 제이쿼리 애니메이션 함수</h3>
+
+    <div>
+        <button>show</button>
+        <button>hide</button>
+        <button>fadeIn</button>
+        <button>fadeOut</button>
+        <button>slideUp</button>
+        <button>slideDown</button>
+    </div>
+    <div class="box box1">box1</div>
+    <div class="box box2">box2</div>
+    <div class="box box3">box3</div>
+
+    
+</body>
+</html>
