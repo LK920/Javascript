@@ -18,7 +18,9 @@
             //빼기버튼
             btn.eq(1).click(function(){
                 ul.children().last().remove();
-                if (count >=1 ){
+                if (count = 1 ){
+                    return;
+                }else{
                     count--;
                 }
             });
