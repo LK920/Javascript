@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-3</title>
+    <style>
+        .box{
+            position: relative;
+            width: 800px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .box>div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background: orange;
+            box-sizing: border-box;
+        }
+        .box>div:nth-child(1){top:10px; left: 0;}
+        .box>div:nth-child(2){top:120px; left: 0;}
+        .box>div:nth-child(3){top:230px; left: 0;}
+        .box>div:nth-child(4){top:340px; left: 0;}
+    </style>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            var box = $('.box>div');
+
+            box.eq(0).click(function(){
+                $(this).animate({
+                    'top': '10px',
+                    'left':'700px'
+                },{
+                    'duration': 1000,
+                    'easing':'easeOutBounce'
+                });
+            });
+            box.eq(1).click(function(){
+                $(this).animate({
+                    'top':'120px',
+                    'left':'700px'
+                },{
+                    'duration':3000,
+                    'complete': function(){
+                            $(this).animate({'left':'0'},3000);
+                    }
+                });
+            });
+            box.eq(2).click(function(){
+                $(this).animate({'left':'0','top':'400px'},{duration:1000, complete : function () {                   
+                    //3사분면에 도착했을때
+                    $(this).animate({'left':'700px'},3000,function (){
+                        //4사분면에 도착했을때
+                        $(this).animate({'top':'0'},2000,function(){
+                            //2사분면에 도착했을때
+                            $(this).animate({'left':'0'},2000,function(){
+                                //1사분면에 도착했을때
+                                $(this).animate({'top':'230px'},2000);
+                            });
+                        });
+                    });
+                }});
+            });
+            box.eq(3).click(function(){
+                $(this).animate({
+                    'left':'0','top':'400px'
+                    },1000).animate({
+                        'left':'700px'
+                    },1000).animate({
+                        'top':'0'
+                    },1000).animate({
+                        'left':'0'
+                    },1000).animate({
+                        'top':'340px'
+                    });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h3>3. 재이쿼리 애니메이션 옵션</h3>
+    <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+</body>
+</html>
