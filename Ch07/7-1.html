@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-1</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var tdUid   = $('tr:eq(0)> td:eq(1)');
+            var tdName  = $('tr:eq(1)> td:eq(1)');
+            var tdHp    = $('tr:eq(2)> td:eq(1)');
+            var tdPos   = $('tr:eq(3)> td:eq(1)');
+            $('button').click(function(){
+                $.ajax({
+                    url: 'http://localhost:8080/DataToJs/Json1.jsp',
+                    type : 'get',
+                    dataType : 'json',
+                    success: function( data ){
+                        tdUid.text(data.uid);
+                        tdName.text(data.name);
+                        tdHp.text(data.hp);
+                        tdPos.text(data.pos);
+                    }
+
+                });
+
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+    <h3>1. Ajax 통신</h3>
+
+    <button>데이터 요청하기</button>
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>휴대폰</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>직급</td>
+            <td>-</td>
+        </tr>
+    </table>
+</body>
+</html>

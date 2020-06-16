@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-2</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function(){  
+            $('button').click(function(){
+
+                var table = $('table');
+
+                $.ajax({
+                    url : 'http://localhost:8080/DataToJs/Json2.jsp',
+                    type : 'get',
+                    dataType : 'json',
+                    success : function(data){
+                        for(var i = 0 ; i<data.length;i++){
+                            
+                            var member = data[i];
+                           table.append('<tr></tr>');
+                           table.find('tr').eq(i).append('<td>'+member.uid+'</td>');
+                           table.find('tr').eq(i).append('<td>'+member.name+'</td>');
+                           table.find('tr').eq(i).append('<td>'+member.hp+'</td>');
+                           table.find('tr').eq(i).append('<td>'+member.pos+'</td>');
+                           table.find('tr').eq(i).append('<td>'+member.dep+'</td>');
+                           table.find('tr').eq(i).append('<td>'+member.rdate+'</td>');
+                            
+                        }
+                     },
+                    error : function(e){
+                        alert('에러내용 : '+ e.message);
+                     }
+                });
+
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <h3>2.Ajax 데이터 요청</h3>
+
+    <button>데이터 가져오기</button>
+    <table border="1">
+
+    </table>
+    
+</body>
+</html>

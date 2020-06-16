@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-3</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function(){
+            
+            var inputUid = $('input[name=uid]');
+            var inputName = $('input[name=name]');
+            var inputHp = $('input[name=hp]');
+            var inputAge = $('input[name=age]');
+            
+                $('button').click(function(){
+                    var uid = inputUid.val();
+                    var name = inputName.val();
+                    var hp = inputHp.val();
+                    var age = inputAge.val();
+
+                    var json = '{"uid":"'+uid+'","name":"'+name+'","hp":"'+hp+'","age":"'+age+'"}';
+                    var jsonObj = JSON.parse(json); 
+                
+                    $.ajax({
+                        url  : "http://localhost:8080/DataToJs/Json3.jsp",
+                        type : "post",
+                        data : jsonObj,
+                        dataType : "json",
+                        success : function(data){
+                            if(data.result == 1) {
+                                alert("데이터 저장 완료");
+                            }else{
+                                alert("데이터 저장 실패");
+                            }
+                        }
+
+                });
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <h3>3.Ajax 데이터 전송하기</h3>
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td><input type="text" name="uid"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td>휴대폰</td>
+            <td><input type="tel" name="hp"></td>
+        </tr>
+        <tr>
+            <td>나이</td>
+            <td><input type="number" name="age"></td>
+        </tr>
+    </table>
+    <button>데이터 전송하기</button>
+</body>
+</html>
