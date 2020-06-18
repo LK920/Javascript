@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-5</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function(){
+            var table = $('table');
+            $('button').click(function(){
+                $.ajax({
+                    url : 'http://localhost:8080/DataToJs/xml2.jsp',
+                    type : 'get',
+                    dataType : 'xml',
+                    success: function(data){
+
+                        var members = $(data).find('members'); //문서객체로 만듦(DOM)
+
+                        members.children().each(function(){
+                             
+                            var uid     = $(this).find('uid').text();
+                            var name    = $(this).find('name').text();
+                            var hp      = $(this).childres().eq(0).text();
+                            var pos     = $(this).childres().eq(0).text();
+                            var dep     = $(this).childres().eq(0).text();
+                            var rdate   = $(this).childres().eq(0).text();
+
+                            table.append('<tr></tr>');
+                            table.find('tr').last().append('<td>'+uid+'</td>');
+                            table.find('tr').last().append('<td>'+name+'</td>');
+                            table.find('tr').last().append('<td>'+hp+'</td>');
+                            table.find('tr').last().append('<td>'+pos+'</td>');
+                            table.find('tr').last().append('<td>'+dep+'</td>');
+                            table.find('tr').last().append('<td>'+rdate+'</td>');
+                        });
+                        
+                    }
+                
+
+
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h3>5. xml 데이터가져오기</h3>
+    <button>데이터 출력하기</button>
+    <table border="1">
+
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-4</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function(){
+
+            var tr = $('table tr');
+
+            $('button').click(function(){
+                $.ajax({
+                    url : 'http://localhost:8080/DataToJs/xml1.jsp',
+                    type : 'get',
+                    dataType : 'xml',
+                    success : function(data){
+                        var xml = $(data) ; //문서객체로 만듦(DOM)
+                        var members = xml.find('members').children();
+
+                        for(var i = 0 ; i <members.length; i++){
+                            var member = members.eq(i);
+                            var uid = member.find('uid').text();
+                            var name = member.find('name').text();
+                            var hp = member.find('hp').text();
+                            var pos = member.find('pos').text();
+
+                            tr.eq(i+1).children().eq(0).text(uid);
+                            tr.eq(i+1).children().eq(1).text(name);
+                            tr.eq(i+1).children().eq(2).text(hp);
+                            tr.eq(i+1).children().eq(3).text(pos);
+                        }                                                          
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h3>4.xml 데이터 가져오기</h3>
+
+    <button>xml 데이터 가져오기</button>
+
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>휴대폰</td>
+            <td>직급</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        
+    </table>
+
+</body>
+</html>

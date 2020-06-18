@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-7</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function(){
+            var list = $('.list');
+            //직원목록
+            $.ajax({
+                url : `http://localhost:8080/DataToJs/xml2.jsp`,
+                type : `get`,
+                dataType : `xml`,
+                success: function(data){
+                    var members = $(data).find('members');
+                    members.children().each(function(){
+                        var uid     = $(this).find('uid').text();
+                        var name    = $(this).find('name').text();
+                        var hp      = $(this).children().eq(2).text();
+                        var pos     = $(this).children().eq(3).text();
+                        var dep     = $(this).children().eq(4).text();
+                        var rdate   = $(this).children().eq(5).text();
+
+                        list.append('<tr></tr>');
+                        list.find('tr').last().append('<td>'+uid+'</td>');
+                        list.find('tr').last().append('<td>'+name+'</td>');
+                        list.find('tr').last().append('<td>'+hp+'</td>');
+                        list.find('tr').last().append('<td>'+pos+'</td>');
+                        list.find('tr').last().append('<td>'+dep+'</td>');
+                        list.find('tr').last().append('<td>'+rdate+'</td>');
+                        list.find('tr').last().append('<td><a href="#">삭제</a></td>');
+                    });
+                }
+            });
+            //직원등록
+            //버튼 클릭시 데이터베이스에 저장
+            $('input[type=submit]').click(function(){
+
+                var uid = $('input[name=uid]').val();
+                var name = $('input[name=name]').val();
+                var hp = $('input[name=hp]').val();
+                var pos = $('select[name=pos]').val();
+                var dep = $('select[name=dep]').val();
+                var rdate = $('input[name=rdate]').val();
+
+                var json = {
+                    'uid':uid,
+                    'name':name,
+                    'hp':hp,
+                    'pos':pos,
+                    'dep':dep,
+                    'rdate':rdate
+                }
+                $.ajax({
+                    
+                });
+
+
+
+            });
+            //등록된 직원을 목록에 출력
+
+
+
+            //직원삭제 - 동적 태그에 대한 이벤트 처리는 on()함수로 구현
+            $(document).on('click','.list a',function(e){  // - html 문서객체에 list a에다가 클릭 이벤트를 구현해라
+               
+                e.preventDefault(); //태그의 기본동작을 무효화-여기선 a 태그의 링크 무효화
+                var tr = $(this).parent().parent();
+                var uid = tr.children().eq(0).text();
+                var json = {'uid':uid};
+                var url = "http://localhost:8080/DataToJs/delete.jsp";
+
+                $.get(url, json, function(data){
+                    if(data.result == 1 ){
+                        alert('데이터가 삭제 되었습니다.')
+                        //데이터베이스와 일치된 데이터 표현을 위한 추가적인 태그삭제
+                        tr.remove(); 
+                    }else{
+                        alert('데이터가 삭제 실패했습니다.')
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h4>직원목록</h4>
+<table class="list" border="1">
+	<tr>
+		<th>아이디</th>
+		<th>이름</th>
+		<th>휴대폰</th>
+		<th>직급</th>
+		<th>부서</th>
+		<th>입사일</th>
+		<th>설정</th>
+	</tr>
+</table>
+
+<h4>직원등록</h4>
+<table class="register" border="1">
+	<tr>
+		<td>아이디</td>
+		<td><input type="text" name="uid" /></td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td><input type="text" name="name" /></td>
+	</tr>
+	<tr>
+		<td>휴대폰</td>
+		<td><input type="text" name="hp" maxlength="13" /></td>
+	</tr>
+	<tr>
+		<td>직급</td>
+		<td>
+			<select name="pos">
+				<option>사원</option>
+				<option>대리</option>
+				<option>과장</option>
+				<option>차장</option>
+				<option>부장</option>
+			</select>				
+		</td>
+	</tr>
+	<tr>
+		<td>부서</td>
+		<td>
+			<select name="dep">
+				<option value="101">영업1부</option>
+				<option value="102">영업2부</option>
+				<option value="103">영업3부</option>
+				<option value="104">영업4부</option>					
+				<option value="105">영업지원부</option>					
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>입사일</td>
+		<td><input type="date" name="rdate"/></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right"><input type="submit" value="등록하기" /></td>
+	</tr>		
+</table>
+    
+</body>
+</html>
